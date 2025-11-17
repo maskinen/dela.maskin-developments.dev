@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="sv">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ladda upp filer - Maskin Developments</title>
+        <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header class="header">
+        <h1 class="logo">Maskin  <span>Developments</span></h1>
+    </header>
+
+    <main class="container">
+        <section class="upload-box">
+            <h2>Ladda upp filer</h2>
+            <p>Välj en eller flera filer att dela. Du får en unik länk efter uppladdning.</p>
+
+            <form id="upload-form" class="upload-form" action="api/upload" method="POST" enctype="multipart/form-data">
+                
+                <label for="files" class="file-label">
+                    <span>Välj filer</span>
+                    <input type="file" name="files" id="files" multiple required>
+                </label>
+
+                <label for="note" class="note-label">
+                    <span>Meddelande / Anteckning (Valfritt)</span>
+                    <textarea name="note" id="note" rows="3" placeholder="Ex: Projektdokument till kunden..."></textarea>
+                </label>
+
+                <button type="submit" class="btn-primary">Ladda upp</button>
+            </form>
+
+            <div id="upload-result" class="upload-result hidden">
+                <h3>Dina delningslänkar</h3>
+                <p>Kopiera länkarna nedan och dela dem vidare</p>
+                <ul id="links-list"></ul>
+            </div>
+
+            <a href="index.html" class="back-link">← Till Startsidan</a>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <p>© 2025 Maskin Developments - All Rights Reserved</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

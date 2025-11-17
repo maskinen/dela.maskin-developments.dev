@@ -1,0 +1,242 @@
+/* =============================================================
+                  GLOBAL SETTINGS
+============================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+}
+
+body {
+    background: #0e0e0e;
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ============================================================
+              HEADER
+============================================================ */
+
+.header {
+    padding: 25px;
+    text-align: center;
+    border-bottom: 1px solid #1b5a45;
+    background: #0f3d2e;
+}
+
+.logo {
+    font-weight: 300;
+    letter-spacing: 1px;
+    font-size: 28px;
+}
+
+.logo span {
+    font-weight: 300;
+    color: #3fcf8e;
+}
+
+/* ==============================================================
+                 MAIN CONTAINER
+=============================================================== */
+
+.container {
+    flex: 1;
+    max-width: 600px;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+/* ============================================================
+                HERO SECTION
+============================================================ */
+.hero {
+    text-align: center;
+}
+
+.hero h2 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    font-size: 18px;
+    opacity: 0.9;
+    margin-bottom: 25px;
+}
+
+/* BUTTONS */
+.buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px; 
+}
+
+.btn {
+    padding: 14px 22px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 16px;
+    display: inline-block;
+    transition: 0.2s ease;
+    text-align: center;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+}
+
+.primary {
+    background: #3fcf8e;
+    color: black;
+}
+
+.primary:hover {
+    background: #2ead73;
+}
+
+.secondary {
+    background: transparent;
+    border: 2px solid #3fcf8e;
+    color: #3fcf8e;
+}
+
+.secondary:hover {
+    background: #3fcf8e;
+    color: black;
+}
+
+/* ===================================================================
+              LOGIN BOX
+==================================================================== */
+
+.login-box, .upload-box {
+    background: #111;
+    border: 1px solid #1b5a45;
+    border-radius: 12px;
+    padding: 35px;
+    text-align: center;
+}
+
+.login-box h2, .upload-box h2 {
+    margin-bottom: 12px;
+    color: #3fcf8e;
+}
+
+.login-box p, .upload-box p {
+    opacity: 0.9;
+    margin-bottom: 25px;
+}
+
+/* DISCORD LOGIN BUTTON */
+.discord-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+
+
+    background: #5865f2;
+    color: white;
+    padding: 14px 25px;
+    border-radius: 8px;
+    font-size: 17px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.2s ease;
+}
+
+.discord-btn:hover {
+    background: #4752c4;
+}
+
+.discord-icon {
+    width: 28px;
+    height: 28px;
+}
+
+/* ===============================================================================
+                        UPLOAD FORM
+=============================================================================== */
+.upload-form {
+    text-align: left;
+}
+
+.file-label, .note-label {
+    display: block;
+    margin-bottom: 20px;
+    font-size: 15px;
+    opacity: 0.9;
+}
+
+.file-label input {
+    margin-top: 10px;
+}
+
+textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    background: #0e0e0e;
+    border: 1px solid #1b5a45;
+    color: white;
+    resize: none;
+}
+
+/* ===============================================================================
+                     UPLOAD RESULT
+================================================================================ */
+.upload-result {
+    margin-top: 30px;
+    padding: 20px;
+    border-radius: 8px;
+    background: #0f3d2e;
+    border: 1px solid #3fcf8e;
+}
+
+.upload-result h3 {
+    margin-bottom: 12px;
+}
+
+.upload-result ul li a {
+    color: #3fcf8e;
+    text-decoration: none;
+}
+
+.upload-result ul li a:hover {
+    text-decoration: underline;
+}
+
+.hidden {
+    display: none;
+}
+
+/* ==================================================================================
+                    BACK LINK
+=================================================================================== */
+.back-link {
+    display: block;
+    margin-top: 25px;
+    color: #3fcf8e;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+/* ===============================================================================
+                       FOOTER
+================================================================================= */
+.footer {
+    text-align: center;
+    padding: 15px;
+    font-size: 14px;
+    opacity: 0.7;
+    margin-top: auto;
+    border-top: 1px solid #1b5a45;
+}

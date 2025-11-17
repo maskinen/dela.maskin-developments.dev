@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="header">
+    <h1 class="logo">Admin <span>Panel</span></h1>
+</header>
+
+<main class="container">
+
+    <h2>Admin Dashboard</h2>
+
+    <div id="stats-box" class="upload-result"></div>
+
+    <div class="sort-options">
+        <button id="sort-biggest" class="btn secondary">Störst fil först</button>
+        <button id="sort-latest" class="btn secondary">Senaste uppladdning först</button>
+    </div>
+
+    <h3>Alla uppladdningar</h3>
+    <ul id="upload-list"></ul>
+
+</main>
+
+<script>
+let uploadsData = [];
+
+fetch("/admin/uploads")
+    .then(res => res.json())
+    .then(data => {
+        uploadsData = data.uploads;
+        const stats = data.stats;
+
+        document.getElementById("stats-box").innerHTML = `
+            <p><strong>Total lagring:</strong> ${stats.totalGB} GB av ${stats.maxGB} GB (${stats.percentUsed}%)</p>
+            <p><strong>Total antal uppladdningar:</strong> ${stats.uploadCount}</p>
+            <p><strong>Antal filer:</strong> ${stats.fileCount}</p>
+            <p><strong>Genomsnittliga filstorleken:</strong> ${stats.averageFileSizeMB} MB</p>
+            <p><strong>Största filen:</strong> ${stats.biggestFile.name} (${stats.biggestFile.sizeMB} MB)</p>
+            <p><strong>Minsta filen:</strong> ${stats.smallestFile.name} (${stats.smallestFile.sizeMB} MB)</p>
+        `;
+
+        renderList(uploadsData);
+
+        // Sortera efter störst fil
+        document.getElementById("sort-biggest").addEventListener("click", () => {
+            const sorted = [...uploadsData].sort((a, b) => b.sizeBytes - a.sizeBytes);
+            renderList(sorted);
+        });
+
+        // Sortera efter senaste uppladdning (timestamp)
+        document.getElementById("sort-latest").addEventListener("click", () => {
+            const sorted = [...uploadsData].sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+            renderList(sorted);
+        });
+
+    })
+    .catch(err => {
+        document.body.innerHTML += "<p>Ingen åtkomst (inte admin)</p>";
+    });
+
+
+// =======================================================
+// 🟩 RENDER FUNKTION — Fixad & Perfekt
+// =======================================================
+function renderList(dataList) {
+    const list = document.getElementById("upload-list");
+    list.innerHTML = "";
+
+    dataList.forEach(u => {
+        const li = document.createElement("li");
+        li.innerHTML = `
+            <strong>${u.filename}</strong>
+            – ${(u.sizeBytes / (1024**2)).toFixed(2)} MB  
+            <br>
+            <small>Uppladdad av: <strong>${u.uploader}</strong> (${u.uploaderId})</small><br>
+            <small>Datum: ${new Date(u.timestamp).toLocaleString("sv-SE")}</small><br>
+            <a href="${u.url}" target="_blank">Öppna</a>
+            <button class="delete-btn" data-id="${u.id}">🗑 Radera</button>
+        `;
+        list.appendChild(li);
+    });
+
+    // Delete-knappar
+    document.querySelectorAll(".delete-btn").forEach(btn => {
+        btn.addEventListener("click", async () => {
+            const id = btn.dataset.id;
+
+            if (!confirm(`Radera mapp '${id}' permanent?`)) return;
+
+            const res = await fetch(`/admin/delete/${id}`, { method: "DELETE" });
+            const out = await res.json();
+
+            if (out.success) {
+                alert("Raderad!");
+                location.reload();
+            } else {
+                alert("Fel: " + out.error);
+            }
+        });
+    });
+}
+</script>
+
+</body>
+</html>
