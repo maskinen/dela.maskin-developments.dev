@@ -240,3 +240,72 @@ textarea {
     margin-top: auto;
     border-top: 1px solid #1b5a45;
 }
+
+/* Dölj original-file-input */
+.stylish-file-btn input[type="file"] {
+    display: none;
+}
+
+/* Custom "Välj filer" knapp */
+.stylish-file-btn {
+    background: linear-gradient(135deg, #2e5b45, #3fcf8e);
+    padding: 14px 22px;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 10px;
+    cursor: pointer;
+    display: inline-block;
+    transition: 0.25s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    font-size: 16px;
+    text-align: center;
+}
+
+.stylish-file-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(63, 207, 142, 0.4);
+}
+
+.stylish-file-btn:active {
+    transform: scale(0.97);
+}
+
+.stylish-upload-btn {
+    background: #3fcf8e;
+    border: none;
+    padding: 14px 26px;
+    color: #fff;
+    font-weight: 700;
+    border-radius: 12px;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 100%;
+    font-size: 17px;
+    transition: 0.25s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.stylish-upload-btn:hover {
+    background: #36b87d;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+.stylish-upload-btn:active {
+    transform: scale(0.97);
+}
+
+.upload-form textarea {
+    border: 2px solid #3fcf8e;
+    border-radius: 10px;
+    padding: 10px;
+    resize: vertical;
+    font-size: 14px;
+    transition: 0.25s;
+}
+
+.upload-form textarea:focus {
+    border-color: #2e5b45;
+    box-shadow: 0 0 5px rgba(63, 207, 142, 0.4);
+    outline: none;
+}
